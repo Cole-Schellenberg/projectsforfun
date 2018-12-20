@@ -1,0 +1,291 @@
+import time
+import random
+#These are all the stories that effect the stock market data
+stories = {
+1:"After battling with pancreatic cancer for nearly 5 years, Steve Jobs has had to take a leave of abscence. This means Apple has no leadership. Apple stocks are going down the toilet.",
+2:"Samsung seems to be having phone malfunctions, this has caused an uproar for iPhones and Apple stocks.",
+3:"Windows has created another failure of a phone causing Apple stocks to rise.",
+4:"Bill Gates was spotted using an IPhone this weekend causing Apples stocks to jump.",
+5:"An immensely popular super bowl ad has caused a surge of popularity for Apple and stocks are rising fast.",
+6:"Tesla creates new electric car, this has caused the Chevron Corporation stocks to take a beating.",
+7:"After the Oil disaster in the Indian ocean Chevron is expected to pay out billions in cleanup causing their stocks to fall.",
+8:"Tesla’s new car caught on fire while driving today causing a surge of confidence in the gas industry and oil stocks.",
+9:"Somehow despite being an oil company Chevron’s CEO was named TIME man of the year and stocks have risen as a result.",
+10:"Chevron has found a new well that will be the largest North America has ever seen and there stocks have risen as a result",
+11:"Dell computer company have upped their prices. Because of this, HP stocks are headed to the top.",
+12:"HP created a new touchscreen concept laptop causing their stocks to rise.",
+13:"A massive motherboard issue has caused HP to recall 70,000 laptops and stocks are falling.",
+14:"After battery life numbers on the new HP laptops were discovered to be fake stocks are dropping.",
+15:"HP has laid off 2000 workers and investors are unsure, stocks seem to be diving.",
+16:"General Motors stocks seem to be dropping due to the Chevy Equinox safety issues.",
+17:"The CEO of GM is also heading to trial next week because of a lawsuit due to sexual assault. The stocks are looking like a sewer right now.",
+18:"Chevy has created an anti GM commercial so popular that GM stocks are hitting the brakes.",
+19:"GMs new sports car has won the F1 circuit and investors are racing to invest in GM",
+20:"GM laid off 2000 employees and declared a restructuring of the company and investors can’t sell fast enough.",
+21:"All Targets within Canada close because they are losing money. People can’t get enough of Walmart, stocks are going nuts.",
+22:"Walmart CEO was seen shopping at Target and the stock market also seems to be shopping elsewhere as Walmart stocks have dived.",
+23:"Walmart declared a storewide 5% increase to increase profits but investors are leaving in flocks.",
+24:"A documentary on the treatment of Walmart employees has caused investors to balk at the cruel treatment and take their money elsewhere.",
+25:"An online company called Amazon has started to increase their presence and stocks are unsure for walmart.",
+26:"Walmart declared their new Rollback sale program and investors are enthused.",
+27:"Amazon’s servers have been down due to technical difficulties the past week and Walmart stocks are up.",
+28:"It looks like AT&T has lowered their prices on unlimited texting throughout North America, stocks of Verizon have been lower than ever.",
+29:"Sprint has declared record losses this quarter and Verizon stocks have jumped as a result.",
+30:"It was leaked that president George Bush uses Verizon and stocks are rising.",
+31:"Verizon has been leaked as the sole carrier of the highly anticipated Apple IPhone and investors are going crazy."
+           }
+
+#This generates the random order that the news stories will generate in
+rand = random.sample(range(32), 32)
+rand.remove(0)
+senteniel = ""
+days = 1
+counterRandom= 0
+storyNum = 300
+def functAAPL():  # def is used to define a function
+    global days
+    global aapl
+    global storyNum
+    aapl = (0.00000444465 * days ** 3) + (-0.000832351 * days ** 2) + (
+    -0.197841 * days) + 73.6347  # Equation for Apple stocks
+    if storyNum == 1:
+        aapl = (0.00000444465 * days ** 3) + (-0.000832351 * days ** 2) + (
+            -0.197841 * days) + 73.6347 - (random.randint(10,20))
+    elif storyNum <=5 and storyNum >=2:
+        aapl = (0.00000444465 * days ** 3) + (-0.000832351 * days ** 2) + (
+            -0.197841 * days) + 73.6347 + (random.randint(10,20))
+
+def functWMT():
+    global days  # Equation for Walmart stocks
+    global wmt
+    global storyNum
+    wmt = ((-3.2442 * 10 ** -12) * days ** 6) + ((3.4663 * 10 ** -9) * days ** 5) + (-0.0000014095 * days ** 4) + (
+    0.000270936 * days ** 3) + (-0.0246118 * days ** 2) + (0.906062 * days) + 38.5129
+    if storyNum >= 22 and storyNum <= 25:
+        wmt = ((-3.2442 * 10 ** -12) * days ** 6) + ((3.4663 * 10 ** -9) * days ** 5) + (-0.0000014095 * days ** 4) + (
+            0.000270936 * days ** 3) + (-0.0246118 * days ** 2) + (0.906062 * days) + 38.5129 - (random.randint(10,20))
+    elif storyNum ==21 or storyNum ==26 or storyNum ==27:
+        wmt = ((-3.2442 * 10 ** -12) * days ** 6) + ((3.4663 * 10 ** -9) * days ** 5) + (-0.0000014095 * days ** 4) + (
+            0.000270936 * days ** 3) + (-0.0246118 * days ** 2) + (0.906062 * days) + 38.5129 + (random.randint(10,20))
+
+def functHP():
+    global days  # Equation for Walmart stocks
+    global hp
+    global storyNum
+    hp = (0.000877338 * days ** 2) + 20.4265
+    if storyNum == 11 or storyNum == 12:
+        hp = (0.000877338 * days ** 2) + 20.4265 + (random.randint(10,20))
+    elif storyNum >= 13 and storyNum <= 15:
+        hp = (0.000877338 * days ** 2) + 20.4265 - (random.randint(10,20))
+def functVZ():
+    global days  # Equation for Verizon stocks
+    global vz
+    global storyNum
+    vz = (0.0180801 * days) + 30.5022
+    if storyNum == 28:
+        vz = (0.0180801 * days) + 30.5022 - (random.randint(10,20))
+    elif storyNum >= 29 and storyNum <= 31:
+        vz = (0.0180801 * days) + 30.5022 + (random.randint(10,20))
+
+def functCVX():
+    global days  # Equation for Chevron stocks
+    global cvx
+    global storyNum
+    cvx = ((2.5366 * 10 ** -12) * days ** 6) + ((-2.4517 * 10 ** -9) * days ** 5) + (
+    (8.5031 * 10 ** -7) * days ** 4) + (-0.000123826 * days ** 3) + (0.00614577 * days ** 2) + (0.0676076 * days) + 49.9384
+    if storyNum ==6 or storyNum ==7 :
+        cvx = ((2.5366 * 10 ** -12) * days ** 6) + ((-2.4517 * 10 ** -9) * days ** 5) + (
+            (8.5031 * 10 ** -7) * days ** 4) + (-0.000123826 * days ** 3) + (0.00614577 * days ** 2) + \
+            (0.0676076 * days) + 49.9384 - (random.randint(10,20))
+    elif storyNum ==8 or storyNum ==9 or storyNum ==10:
+        cvx = ((2.5366 * 10 ** -12) * days ** 6) + ((-2.4517 * 10 ** -9) * days ** 5) + (
+            (8.5031 * 10 ** -7) * days ** 4) + (-0.000123826 * days ** 3) + (0.00614577 * days ** 2) + (0.0676076 * days) + 49.9384
+def functGM():
+    global days  # Equation for General Motors stocks
+    global gm
+    global storyNum
+    gm = ((-3.9183 * 10 ** -14) * days ** 6) + ((1.4787 * 10 ** -10) * days ** 5) + (
+    (-1.0991 * 10 ** -7) * days ** 4) + (
+    0.0000312428 * days ** 3) + (-0.0037299 * days ** 2) + (0.194518 * days) + 27.6578
+    if storyNum ==16 or storyNum ==17 or storyNum ==18 or storyNum ==20:
+        gm = ((-3.9183 * 10 ** -14) * days ** 6) + ((1.4787 * 10 ** -10) * days ** 5) + (
+            (-1.0991 * 10 ** -7) * days ** 4) + (
+                 0.0000312428 * days ** 3) + (-0.0037299 * days ** 2) + (0.194518 * days) + 27.6578 - (random.randint(10,20))
+    elif storyNum ==19:
+        gm = ((-3.9183 * 10 ** -14) * days ** 6) + ((1.4787 * 10 ** -10) * days ** 5) + (
+            (-1.0991 * 10 ** -7) * days ** 4) + (
+                 0.0000312428 * days ** 3) + (-0.0037299 * days ** 2) + (0.194518 * days) + 27.6578 + (random.randint(10,20))
+# These are the amount of stocks owned by the user
+aaplStocks = 0
+wmtStocks = 0
+hpStocks = 0
+vzStocks = 0
+cvxStocks = 0
+gmStocks = 0
+
+# This is where the codes interaction with the user begins
+name = input("Welcome to the ultimate stock market simulator what is your name: ")
+print("Hi", name, "the stock market simulator takes the stock market data from the year 2005 "
+                  "and challenges you to make the most money you can in 365 days\namid crisis "
+                  "and crashes all based on real events." )
+time.sleep(1)
+while True:
+    difficulty = input(name + " what difficulty would you like to play. Easy, Medium or Hard? ")
+    difficulty = difficulty.lower()
+    if difficulty == "easy":
+        startBalance = 100000
+        print("haha of course you picked easy your starting balance is", startBalance)
+        break
+    elif difficulty == "medium":
+        startBalance = 50000
+        print("good choice, you picked medium your starting balance is", startBalance)
+        break
+    elif difficulty == "hard":
+        startBalance = 25000
+        print("think you're a hotshot eh your starting balance is", startBalance)
+        break
+    else:
+        print("that is not a valid difficulty try again")
+balance = startBalance
+time.sleep(1)
+print( "The 6 stocks you will be playing with are aapl=Apple, wmt=Walmart, hp=Hewlett Packard, vz=Verizon, cvx=Chevron Corporation, gm=General Motors")
+time.sleep(1)
+
+while days != 366:
+        print(" " * 30, "\n", "*" * 40, "\n"," " * 30)
+        if days%4 == 0 and days <124:
+            storyNum = rand[counterRandom]
+            counterRandom += 1
+            print("NEWS STORY:\n", stories[storyNum])
+            print(" " * 30, "\n", "*" * 40, "\n", " " * 30)
+            time.sleep(0)
+        functAAPL(), functWMT(), functHP(), functVZ(), functCVX(), functGM()
+        print("Day:", days,"aapl:", round(aapl,2) , "wmt:", round(wmt,2) , "hp:", round(hp,2),
+              "vz:", round(vz,2) , "cvx:", round(cvx,2), "gm:", round(gm,2))
+        print("your amount of owned stocks: ", "aapl:", aaplStocks, "wmt:", wmtStocks, "hp:", hpStocks, "vz:", vzStocks, "cvx:",
+              cvxStocks, "gm:", gmStocks)
+        days += 1
+        buysell = input("Do you want to buy or sell or to continue press enter: ")
+        # sets the story number to one that wont trigger a story so it waits another 5 days
+        storyNum = 200
+        while buysell == "buy":
+            whichstock = input("enter the stock ticker of the stock you would like to purchase: ")
+            if whichstock == "aapl":
+                stockamount = int(input("how many apple stocks"))
+                if balance - (stockamount * aapl) > 0:
+                    aaplStocks = stockamount + aaplStocks
+                    balance = balance - (stockamount * aapl)
+                    print("congrats you now own", aaplStocks, "apple stocks worth", aapl*stockamount)
+                    print("your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have enough money to buy this many stocks")
+            elif whichstock == "wmt":
+                stockamount = int(input("how many walmart stocks"))
+                if balance - (stockamount * wmt) > 0:
+                    wmtStocks = stockamount + wmtStocks
+                    balance = balance - (stockamount * wmt)
+                    print("congrats you now own", wmtStocks,"walmart stocks worth", wmt*stockamount)
+                    print("your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have enough money to buy this many stocks")
+            elif whichstock == "hp":
+                stockamount = int(input("how many hewlett packard stocks"))
+                if balance - (stockamount * hp) > 0:
+                    hpStocks = stockamount + hpStocks
+                    balance = balance - (stockamount * hp)
+                    print("congrats you now own", hpStocks, "hp stocks worth", hp*stockamount)
+                    print("your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have enough money to buy this many stocks")
+            elif whichstock == "vz":
+                stockamount = int(input("how many verizon stocks"))
+                if balance - (stockamount * vz) > 0:
+                    vzStocks = stockamount + vzStocks
+                    balance = balance - (stockamount * vz)
+                    print("congrats you now own", vzStocks, "verizon stocks worth", vz*stockamount)
+                    print("your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have enough money to buy this many stocks")
+            elif whichstock == "cvx":
+                stockamount = int(input("how many chevron stocks"))
+                if balance - (stockamount * cvx) > 0:
+                    cvxStocks = stockamount + cvxStocks
+                    balance = balance - (stockamount * cvx)
+                    print("congrats you now own", cvxStocks, "chevron stocks worth", cvx*stockamount)
+                    print("your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have enough money to buy this many stocks")
+            elif whichstock == "gm":
+                stockamount = int(input("how many general motors stocks"))
+                if balance - (stockamount * gm) > 0:
+                    gmStocks = stockamount + gmStocks
+                    balance = balance - (stockamount * gm)
+                    print("congrats you now own", gmStocks, "gm stocks worth", gm*stockamount)
+                    print("your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have enough money to buy this many stocks")
+            else:
+                print("Not a valid stock please try again")
+
+        while buysell == "sell":
+            whichstock = input("enter the stock ticker of the stock you would like to sell: ")
+            if whichstock == "aapl":
+                stockamount = int(input("how much apple stock"))
+                if aaplStocks - stockamount >= 0:
+                    balance = balance + (stockamount * aapl)
+                    print("congrats you sold", (stockamount * aapl), "worth of stock, your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have this many stocks")
+            elif whichstock == "wmt":
+                stockamount = int(input("how much walmart stock"))
+                if wmtStocks - stockamount >= 0:
+                    balance = balance + (stockamount * wmt)
+                    print("congrats you sold", (stockamount * wmt), "worth of stock, your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have this many stocks")
+            elif whichstock == "hp":
+                stockamount = int(input("how much hp stock"))
+                if hpStocks - stockamount >= 0:
+                    balance = balance + (stockamount * hp)
+                    print("congrats you sold", (stockamount * hp), "worth of stock, your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have this many stocks")
+            elif whichstock == "vz":
+                stockamount = int(input("how much verizon stock"))
+                if vzStocks - stockamount>= 0:
+                    balance = balance + (stockamount * vz)
+                    print("congrats you sold", (stockamount * vz), "worth of stock, your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have this many stocks")
+            elif whichstock == "cvx":
+                stockamount = int(input("how much chevron stock"))
+                if cvxStocks - stockamount >= 0:
+                    balance = balance + (stockamount * cvx)
+                    print("congrats you sold", (stockamount * cvx), "worth of stock, your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have this many stocks")
+            elif whichstock == "gm":
+                stockamount = int(input("how much general motors stock"))
+                if gmStocks - stockamount >= 0:
+                    balance = balance + (stockamount * gm)
+                    print("congrats you sold", (stockamount * gm), "worth of stock, your new balance is", round(balance,2))
+                    break
+                else:
+                    input("you do not have this many stocks")
+            else:
+                print("Not a valid stock please try again")
+#This calculates the return on initial investment
+roi = (balance - startBalance) / balance
+print("congradulations on finishing one year of the stock market simulator your starting balance was", startBalance,
+      "and your end balance was", balance, "this means you had a ROI of", roi , "%")
